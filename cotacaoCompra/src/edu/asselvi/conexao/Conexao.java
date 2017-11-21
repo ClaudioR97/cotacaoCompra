@@ -18,9 +18,9 @@ import edu.asselvi.conexao.bancoDeDados.EErrosBD;
 
 public class Conexao {
 	private static Connection conn = null;
-	private static String usuario = "";
-	private static String baseDeDados = "";
-	private static String senha = "";
+	private static String usuario = "csramos";
+	private static String baseDeDados = "sys";
+	private static String senha = "csr123";
 
 	public static Connection getConexao() throws BDException {
 		try {
@@ -29,12 +29,10 @@ public class Conexao {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + conexaoBean.getDataBase() + "?useSSL=true",
 																			conexaoBean.getUsuario(),
 																			conexaoBean.getSenha());
-			JOptionPane.showMessageDialog(null, "Conectado com sucesso!!!", null, JOptionPane.INFORMATION_MESSAGE, null);
-			conn.close();
+			//JOptionPane.showMessageDialog(null, "Conectado com sucesso!!!", null, JOptionPane.INFORMATION_MESSAGE, null);
 			System.out.println(conexaoBean.toString());
 			return conn;
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, EErrosBD.ABRE_CONEXAO.getMensagem() + e.getMessage(), null, JOptionPane.ERROR_MESSAGE, null);
 			throw new BDException(EErrosBD.ABRE_CONEXAO, e.getMessage());
 		}
 	}
@@ -84,7 +82,7 @@ public class Conexao {
 				senha = password.getText();
 				try {
 					getConexao();
-					System.exit(0);
+					janela.setVisible(false);
 				} catch (BDException e1) {
 					System.exit(0);
 				}
