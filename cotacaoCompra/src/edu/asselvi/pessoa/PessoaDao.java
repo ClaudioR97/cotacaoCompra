@@ -53,19 +53,17 @@ public class PessoaDao implements IDefaultDao {
 		Connection conexao = Conexao.getConexao();
 		try {
 			PreparedStatement pst = conexao.prepareStatement("INSERT INTO pessoa "
-															+ "(	cd_pessoa, "
-															+ "		nm_pessoa, "
-															+ "		cd_cpf, "
-															+ "		ie_funcionario, "
-															+ "		ie_sexo, "
-															+ "		dt_nascimento)" 
-															+ "VALUES (?, ?, ?, ?, ?, ?)");
-			pst.setInt(1, pessoa.getCdPessoa());
-			pst.setString(2, pessoa.getNmPessoa());
-			pst.setLong(3, pessoa.getCdCpf());
-			pst.setString(4, pessoa.isIeFuncionario() ? "S" : "N");
-			pst.setString(5, pessoa.getIeSexo());
-			pst.setDate(6, new java.sql.Date(pessoa.getDtNascimento().getTime()));
+									+ "(	nm_pessoa, "
+									+ "	cd_cpf, "
+									+ "	ie_funcionario, "
+									+ "	ie_sexo, "
+									+ "	dt_nascimento)" 
+									+ "VALUES (?, ?, ?, ?, ?)");
+			pst.setString(1, pessoa.getNmPessoa());
+			pst.setLong(2, pessoa.getCdCpf());
+			pst.setString(3, pessoa.isIeFuncionario() ? "S" : "N");
+			pst.setString(4, pessoa.getIeSexo());
+			pst.setDate(5, new java.sql.Date(pessoa.getDtNascimento().getTime()));
 			return pst.executeUpdate() > 0;
 		} catch (Exception e) {
 			throw new BDException(EErrosBD.INSERE_DADO, e.getMessage());
