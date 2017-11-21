@@ -18,9 +18,9 @@ import edu.asselvi.conexao.bancoDeDados.EErrosBD;
 
 public class Conexao {
 	private static Connection conn = null;
-	private static String usuario = "csramos";
-	private static String baseDeDados = "sys";
-	private static String senha = "csr123";
+	private static String usuario = "";
+	private static String baseDeDados = "";
+	private static String senha = "";
 
 	public static Connection getConexao() throws BDException {
 		try {
@@ -29,7 +29,7 @@ public class Conexao {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + conexaoBean.getDataBase() + "?useSSL=true",
 																			conexaoBean.getUsuario(),
 																			conexaoBean.getSenha());
-			//JOptionPane.showMessageDialog(null, "Conectado com sucesso!!!", null, JOptionPane.INFORMATION_MESSAGE, null);
+			JOptionPane.showMessageDialog(null, "Conectado com sucesso!!!", null, JOptionPane.INFORMATION_MESSAGE, null);
 			System.out.println(conexaoBean.toString());
 			return conn;
 		} catch (Exception e) {
@@ -50,7 +50,7 @@ public class Conexao {
 	}
 	
 	public void informarConecBanco() {
-		JFrame janela = new JFrame("Conex„o");
+		JFrame janela = new JFrame("Conex√£o");
 		JPanel painel = new JPanel();
 		JButton botaoOk = new JButton("OK");
 		JTextField bd = new JTextField(15);
@@ -60,7 +60,7 @@ public class Conexao {
 		painel.add(new JLabel("Base de Dados"));
 		painel.add(bd);
 		
-		painel.add(new JLabel("Usu·rio"));
+		painel.add(new JLabel("Usu√°rio"));
 		painel.add(user);
 		
 		painel.add(new JLabel("Senha"));
@@ -82,7 +82,7 @@ public class Conexao {
 				senha = password.getText();
 				try {
 					getConexao();
-					janela.setVisible(false);
+					System.exit(0);
 				} catch (BDException e1) {
 					System.exit(0);
 				}
