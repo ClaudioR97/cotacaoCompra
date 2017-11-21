@@ -10,6 +10,25 @@ public class Pessoa {
 	private String ieSexo;
 	private Date dtNascimento;
 
+	public Pessoa(int cdPessoa, String nmPessoa, long cdCpf, boolean ieFuncionario, String ieSexo, Date dtNascimento) {
+		super();
+		this.cdPessoa = cdPessoa;
+		this.nmPessoa = nmPessoa;
+		this.cdCpf = cdCpf;
+		this.ieFuncionario = ieFuncionario;
+		this.ieSexo = ieSexo;
+		this.dtNascimento = dtNascimento;
+	}
+
+	public Pessoa() {
+		setCdPessoa(0);
+		setNmPessoa("");
+		setCdCpf(0L);
+		setIeFuncionario(false);
+		setIeSexo("");
+		setDtNascimento(new Date());
+	}
+
 	public int getCdPessoa() {
 		return cdPessoa;
 	}
@@ -36,6 +55,10 @@ public class Pessoa {
 
 	public boolean isIeFuncionario() {
 		return ieFuncionario;
+	}
+	
+	public String isFuncionarioAsString() {
+		return isIeFuncionario() ? "S" : "N";
 	}
 
 	public void setIeFuncionario(boolean ieFuncionario) {
